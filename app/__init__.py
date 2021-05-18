@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_bootstrap import Bootstrap
+
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -50,5 +52,6 @@ if not app.debug:
     app.logger.info('Microblog startup')
 
 mail = Mail(app)
+bootstrap = Bootstrap(app)
 
 from app import routes, models, errors
