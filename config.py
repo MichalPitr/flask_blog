@@ -1,5 +1,4 @@
 import os
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -16,3 +15,5 @@ class Config:
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['michal.pitr.altis@gmail.com']
+
+    POSTS_PER_PAGE = 25
