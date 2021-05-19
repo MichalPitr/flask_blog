@@ -1,5 +1,5 @@
-from flask import Flask
-from flask_babel import Babel
+from flask import Flask, request
+from flask_babel import Babel, lazy_gettext as _l
 from flask_bootstrap import Bootstrap
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -56,5 +56,15 @@ mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 babel = Babel(app)
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+login = LoginManager(app)
+login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 
 from app import routes, models, errors
